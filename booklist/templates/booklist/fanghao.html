@@ -1,0 +1,54 @@
+{% extends "booklist/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>
+		放号:
+	</h2>
+{% endblock header %}
+
+{% block content %}
+
+	<p>添加新内容：</p>
+	<form action="{% url 'booklist:fanghao'%} " method="post" class="form">
+		{% csrf_token %}
+		{% bootstrap_form form_fanghao %}
+		
+		{% buttons %}
+			<button name="submit" class="btn btn-primary">增加</button>
+		{% endbuttons %}
+	</form>
+	<h4> {{ show_msg }} </h4>
+
+	{% for item_fanghao in list_fanghao %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				接收站：{{ item_fanghao.loadPoint }}
+				<br>
+				预约段：{{ item_fanghao.nameYuYueHao }}
+				<br>
+				<small>
+					数量：{{ item_fanghao.numHao }}
+					<br>
+					开始时间：{{ item_fanghao.beginTime |date:'Y-m-d, H:i' }}
+					&nbsp;&nbsp;
+					结束时间：{{ item_fanghao.endTime |date:'Y-m-d, H:i' }}
+					<a href=""></a>
+				</small>
+			</h4>
+		</div>
+		<div class="panel-body">
+				<!-- 内容：-->
+		</div>
+	</div>
+
+	{% empty %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			无数据
+		</div>
+	</div>	<!-- 无内容 -->
+	{% endfor %}
+
+{% endblock content %}

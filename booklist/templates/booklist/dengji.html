@@ -1,0 +1,52 @@
+{% extends "booklist/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>车辆登记</h2>
+{% endblock header %}
+
+{% block content %}
+
+	<form method="post" action="{% url 'booklist:dengji' %}" class="form">
+		{% csrf_token %}
+		车头车牌：<input type="text" name="str_chetou" value="{{ str_chetou }}">
+		<br>
+		操作: &nbsp; &nbsp;
+		<input type="radio" name="str_zhuangtai" value="in">登入 &nbsp; &nbsp;
+        <input type="radio" name="str_zhuangtai" value="do">作业 &nbsp; &nbsp;
+		<input type="radio" name="str_zhuangtai" value="out">登出 &nbsp; &nbsp;
+		<br>
+
+		<br>
+		{% buttons %}
+			<button name="submit" class="btn btn-primary">登记</button>
+		{% endbuttons %}
+	</form>
+
+	<br>
+	<h4> {{ show_msg }}</h4>
+
+{% if num_listsize %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				接收站：{{car_item.loadPoint}}
+				<br>
+                <small>
+                    排队长度：{{ num_listsize }}
+				</small>
+			</h4>
+		</div>
+		<div class="panel-body">
+				<!-- 内容：-->
+			车头车牌：{{ car_item.headNumber}}
+            <br>
+            登入时间：{{ car_item.time_in | date:'Y-m-d, H:i' }}
+			<br>
+			前面还有：{{ num_carindex }}辆
+		</div>
+	</div>
+{% endif %}
+
+
+{% endblock content %}

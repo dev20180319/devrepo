@@ -1,0 +1,4 @@
+Django==2.0.2
+django-bootstrap3==9.1.0
+djangorestframework==3.7.7
+WeRoBot==1.2.0

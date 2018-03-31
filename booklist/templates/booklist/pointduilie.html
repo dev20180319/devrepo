@@ -1,0 +1,83 @@
+{% extends "booklist/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>接收站排队情况</h2>
+{% endblock header %}
+
+{% block content %}
+
+	<form method="post" action="{% url 'booklist:pointduilie' %}" class="form">
+		{% csrf_token %}
+		接收站：<input type="text" name="str_jieshouzhan" value="{{ str_jieshouzhan }}">
+		<br>
+		<br>
+		{% buttons %}
+			<button name="submit" class="btn btn-primary">查询接收站排队情况</button>
+		{% endbuttons %}
+	</form>
+
+	<h4> {{ show_msg }} </h4>
+
+	<h4> 排队中车辆有： {{in_size}}</h4>
+	{% for in_item in duilie_in %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				优先级：{{ in_item.youxianji }}
+                <br>
+                接收站：{{ in_item.loadPoint }}
+                <small>
+                    <br>
+				</small>
+			</h4>
+		</div>
+		<div class="panel-body">
+				<!-- 内容：-->
+			车头车牌：{{ in_item.headNumber}}
+            <br>
+            登入时间：{{ in_item.time_in | date:'Y-m-d, H:i' }}
+		</div>
+	</div>
+
+	{% empty %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			无数据
+		</div>
+	</div>	<!-- 无内容 -->
+	{% endfor %}
+
+	<h4> 作业中的车辆有： {{ do_size }}</h4>
+	{% for do_item in duilie_do %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				优先级：{{ do_item.youxianji }}
+                <br>
+                接收站：{{ do_item.loadPoint }}
+                <small>
+                    <br>
+				</small>
+			</h4>
+		</div>
+		<div class="panel-body">
+				<!-- 内容：-->
+			车头车牌：{{ do_item.headNumber}}
+			<br>
+			登入时间：{{ do_item.time_in | date:'Y-m-d, H:i' }}
+			<br>
+            作业时间：{{ do_item.time_do | date:'Y-m-d, H:i' }}
+		</div>
+	</div>
+
+	{% empty %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			无数据
+		</div>
+	</div>	<!-- 无内容 -->
+	{% endfor %}
+
+
+{% endblock content %}

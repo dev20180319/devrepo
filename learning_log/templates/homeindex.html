@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block header %}
+	<div class="jumbotron">
+		<h1>python-Django框架学习实践</h1>
+	</div>
+{% endblock header %}
+
+{% block content %}	
+	
+	<div>
+		<h2><a href="{% url 'admin:index' %}">django 管理界面</a></h2>
+		<h2><a href="{% url 'echarts:index' %}">echarts 演示</a></h2>
+		<h2><a href="{% url 'learning_logs:index' %}">运维日志</a></h2>
+		<h2><a href="{% url 'booklist:index' %}">预约排队</a></h2>
+		<h2><a href="restapi">restapi</a></h2>
+		<h2><a href="{% url 'toupiao:index' %}">投票</a></h2>
+		<h2><a href="{% url 'weixinapp:demo' %}">微信jsSDK demo</a></h2>
+		<h2><a href="{% url 'weixinapp:robot' %}">微信robot</a></h2>
+
+		<h2><a href="{% url 'vuejsapp:index' %}">Vue.js dist helloindex</a></h2>
+		<h2><a href="{% url 'vuejsapp:hellovueapp' %}">Vueapp backend render vuehello</a></h2>
+		<h2><a href="{% url 'vuejsapp:api_index' %}">Vueapp backend api</a></h2>
+
+	</div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "booklist/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>槽车计划</h2>
+{% endblock header %}
+
+{% block content %}
+
+	<form method="post" action="{% url 'booklist:pointplans' %}" class="form">
+		{% csrf_token %}
+		接收站：<input type="text" name="str_jieshouzhan" value="{{ str_jieshouzhan }}">
+		<br>
+		<br>
+		{% buttons %}
+			<button name="submit" class="btn btn-primary">查询接收站计划</button>
+		{% endbuttons %}
+	</form>
+	<h4> {{ show_msg }}</h4>
+
+	{% for carplan in carplans %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>
+				id：{{ carplan.id}}
+				<br>
+				接收站：{{ carplan.loadPoint}}
+				<br>
+				计划时间：{{ carplan.sheduleLoadTime|date:'Y-m-d, H:i' }}
+				<small>
+					<a href=""></a>
+				</small>
+			</h4>
+		</div>
+		<div class="panel-body">
+				<!-- 内容：-->
+			车头车牌：{{ carplan.headNumber}}
+			<br>
+			驾驶员：{{ carplan.driverName}}
+			<br>
+			押运员：{{ carplan.convoyName}}
+
+		</div>
+	</div>
+		
+	{% empty %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			无数据
+		</div> 
+	</div>	<!-- 无内容 -->
+	{% endfor %}
+
+
+
+{% endblock content %}

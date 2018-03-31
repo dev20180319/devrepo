@@ -1,0 +1,33 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+	<h2>项目</h2>
+{% endblock header %}
+
+{% block content %}
+
+
+	{% for topic in topics %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3>
+				<a href="{% url 'learning_logs:topic' topic.id %}">
+					{{ topic }}
+				</a>
+			</h3>
+		</div>
+	</div>
+		
+	{% empty %}
+	<div class="panel panel-default">
+		<div class="panel-body">
+			还没添加任何topic
+		</div> 
+	</div>	<!-- 无内容 -->
+	{% endfor %}
+
+<h4>
+	<a href="{% url 'learning_logs:new_topic' %}">添加新项目Topic</a>
+</h4>
+
+{% endblock content %}

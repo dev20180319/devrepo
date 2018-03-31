@@ -1,0 +1,35 @@
+{% extends "booklist/base.html" %}
+
+{% block header %}
+	<div class="jumbotron">
+		<h1>预约、排队</h1>
+	</div>
+{% endblock header %}
+
+{% block content %}	
+	<h2>预约排队，选择菜单</h2>
+
+	<ul class="nav navbar-nav">
+		<li>
+			<a href="{% url 'booklist:carplans' %}">计划-槽车</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:pointplans' %}">计划-接收站</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:fanghao' %}">预约-接收站放号</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:yuehao' %}">预约-司机约号</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:dengji' %}">排队-登记</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:chexuhao' %}">排队-槽车</a>
+		</li>
+		<li>
+			<a href="{% url 'booklist:pointduilie' %}">排队-接收站</a>
+		</li>
+	</ul>
+{% endblock content %}
